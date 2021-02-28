@@ -1,0 +1,29 @@
+spring:
+   jpa:
+      hibernate:
+         ddl-auto: update
+         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            format_sql: true
+      show-sql: true
+
+         
+   datasource:
+      url: jdbc:mysql://localhost:3306/hospital?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: root
+      password:
+      driverClassName: com.mysql.jdbc.Driver
+      
+#permite añadir trazas de las querys por consola      
+logging:
+   level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+server:
+   port: 8086
+   servlet:
+      context-path: /horario-app
+    
