@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 public class Horario {
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_HORARIO", nullable = false)
-	private float idHorario;
+	private long idHorario;
 	private String Horario;
 }
