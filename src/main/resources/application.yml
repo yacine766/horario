@@ -1,5 +1,43 @@
+spring:
+   jpa:
+      hibernate:
+         ddl-auto: update
+         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            format_sql: true
+      show-sql: true
+
+         
+   datasource:
+      url: jdbc:mysql://localhost:3306/hospital?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: root
+      password:
+      driverClassName: com.mysql.jdbc.Driver
+      
+   zipkin:
+    base-url: http://127.0.0.1:9411/
+    service:
+       name: HORARIO
+    sender:
+      type: web
+      
+   application:
+    name: HORARIO
+   
+   sleuth:
+    sampler:
+      percentage: 1.0
+   
+#permite añadir trazas de las querys por consola      
+logging:
+   level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 server:
-   port: 8087
- 
+   port: 8088
+   servlet:
+      context-path: /horario-app
     

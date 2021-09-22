@@ -17,5 +17,5 @@ public class Horario {
 	@Id
 	@GeneratedValue
 	private long idHorario;
-	private String Horario;
+	private String horario;
 }
