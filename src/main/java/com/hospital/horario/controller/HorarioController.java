@@ -2,6 +2,7 @@ package com.hospital.horario.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ public class HorarioController {
 
 	// Lista de todos los horarios
 
-	@RequestMapping("/allhorarios")
-	public List<Horario> getAllHorarios() {
+	@RequestMapping(path="/horario/allhorarios" ,method =RequestMethod .GET)
+	public ResponseEntity<List<Horario>> getAllHorarios() {
 		
-		return horarioService.getAllHorarios();
+		List<Horario> horarios = horarioService.getAllHorarios();
+		return new ResponseEntity<>(horarios,HttpStatus.OK);
 	}
 	
 	//devolver horario en concreto
@@ -50,11 +52,13 @@ public class HorarioController {
 	
 	//delete un horario de la BD
 	@RequestMapping (path="/horario/{horarioid}",method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteHorario(@PathVariable long horarioid) {
 		horarioService .deleteHorario(horarioid);
 	}
 	@RequestMapping(path ="/horario/{horarioId}", method=RequestMethod.PUT)
-	 public void updateCliente(@PathVariable Long horarioId,@RequestBody Horario horario) {
+	@ResponseStatus(HttpStatus.CREATED)
+	 public void updateCliente(@PathVariable Long horarioId,@Valid @RequestBody Horario horario) {
 	  horarioService.updateHorario(horario);
 	}
 }
